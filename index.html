@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;500&family=Inter:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    </link>
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="app">
+            <!-- <p>{{title}} - {{author}} - {{age}} </p>
+             -->
+            <div v-if="showBooks">
+                <p>{{title}} - {{author}} - {{age}} </p>
+            </div>
+
+            <!--#######################TOGGLE######################-->
+            <!-- toggle status end -->
+            <button @click="toggleShowBooks">
+                <span v-if="showBooks">Hide Books</span>
+                <!-- <span v-if="!showBooks">Show Books</span> -->
+                <span v-else>Show Books</span>
+            </button>
+
+            <!-- toggle status begin -->
+            <!-- <button @click="toggleShowBooks">
+                <span>Hide Books Toggle</span>
+            </button> -->
+            <!--#######################V-SHOW ######################-->
+            <!-- when using V-IF, it inserts and removes element from DOM, when using V-SHOW, it uses CSS -->
+            <div v-show="showBooks">Currently showing books</div>
+
+            <!--#######################V-ON ######################-->
+            <button v-on:click="age++">Increase Age</button>
+            <button v-on:click="age--">Decrease Age</button>
+            <!-- v-on is a directive, inside double quotation is javascrip -->
+            <!-- <div @click="title = 'something else'">Change Book Title</div> -->
+            <!-- @ is a shorthand for v-on: -->
+            <div @click="changeTitle('Oathbringer')">Change Book Title</div>
+            <!-- note here we only reference the function without invoking it, otherwise it would be changeTitle(). The click action invokes it -->
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <script src="./app.js" type='module'></script>
+</body>
