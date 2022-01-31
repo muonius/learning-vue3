@@ -13,6 +13,16 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     </link>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,6 +49,7 @@
             </button> -->
             <!--#######################V-SHOW ######################-->
             <!-- when using V-IF, it inserts and removes element from DOM, when using V-SHOW, it uses CSS -->
+            <!-- V-SHOW is lighter weight than V-IF, frequent toggle, try to use V-SHOW -->
             <div v-show="showBooks">Currently showing books</div>
 
             <!--#######################V-ON ######################-->
@@ -49,6 +60,15 @@
             <!-- @ is a shorthand for v-on: -->
             <div @click="changeTitle('Oathbringer')">Change Book Title</div>
             <!-- note here we only reference the function without invoking it, otherwise it would be changeTitle(). The click action invokes it -->
+
+            <br>
+            <!--#######################MOUSE-EVENTS######################-->
+            <div class='box' @mouseover="handleEvent($event, 5)">mouse over</div>
+            <!-- when you want to pass on additional argument, make sure to add first `event` argument in using `$event` -->
+            <div class='box' @mouseover="handleEvent">mouse leave</div>
+            <div class='box' @dblclick="handleEvent">double click</div>
+            <div class='box' @mousemove="handleMouseMove">position - {{x}} {{y}}</div>
+
         </div>
     </div>
     <script src="https://unpkg.com/vue@3.0.2"></script>
