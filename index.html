@@ -22,6 +22,36 @@
             margin: 20px;
             display: inline-block;
         }
+
+        body {
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        p,
+        h3,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* horizontally spaced evenly */
+        }
+
+        li.fav {
+            background: #ff9ed2;
+            color: white;
+        }
     </style>
 </head>
 
@@ -32,7 +62,32 @@
             <!-- <p>{{title}} - {{author}} - {{age}} </p>
              -->
             <div v-if="showBooks">
-                <p>{{title}} - {{author}} - {{age}} </p>
+
+                <!--#######################Attribute Binding######################-->
+                <!-- <a v-bind:href="url">The World's Best Web</a> -->
+                <a :href="url">The World's Best Web</a>
+
+                <!--#######################V-FOR######################-->
+                <ul>
+                    <!-- Conditional Class -->
+                    <!-- using computed data -->
+                    <li v-for="book in filteredBooks" :class="{fav: book.isFav}" @click="toggleFav(book)">
+                        <!-- using original data -->
+                        <!-- <li v-for="book in books" :class="{fav: book.isFav}" @click="toggleFav(book)"> -->
+
+                        <img :src="book.img" :alt="book.title">
+                        <h3>{{book.title}}</h3>
+                        <p>{{book.author}}</p>
+
+                        <!--#######################TOGGLE Fav######################-->
+
+
+                    </li>
+                </ul>
+                <!-- <p>{{books[0].title}} - {{books[0].author}} </p> -->
+                <!-- <p>{{books[1].title}} - {{books[1].author}} </p> -->
+                <!-- <p>{{books[2].title}} - {{books[2].author}} </p> -->
+                <!-- <p>{{title}} - {{author}} - {{age}} </p> -->
             </div>
 
             <!--#######################TOGGLE######################-->
@@ -47,6 +102,7 @@
             <!-- <button @click="toggleShowBooks">
                 <span>Hide Books Toggle</span>
             </button> -->
+
             <!--#######################V-SHOW ######################-->
             <!-- when using V-IF, it inserts and removes element from DOM, when using V-SHOW, it uses CSS -->
             <!-- V-SHOW is lighter weight than V-IF, frequent toggle, try to use V-SHOW -->
