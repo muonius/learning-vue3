@@ -9,6 +9,7 @@ const app = Vue.createApp({
       age: 45,
       x: 0,
       y: 0,
+      eventName: "Double Click",
     };
   },
   methods: {
@@ -26,6 +27,9 @@ const app = Vue.createApp({
     handleMousemove(e) {
       this.x = e.offsetX;
       this.y = e.offsetY;
+    },
+    handleDoubleClick(e) {
+      this.eventName = "Double Clicked";
     },
   },
 });

@@ -41,7 +41,7 @@
 
 <div class="box" @mouseover="handleEvent($event,5)">Mouseover</div>
 <div class="box" @mouseleave="handleEvent">Mouseleave</div>
-<div class="box" @dblclick="handleEvent">Double Click</div>    
+<div class="box" @dblclick="handleDoubleClick">{{eventName}}</div>    
 <div class="box" @mousemove="handleMousemove">Position - {{x}} {{y}}</div>
 </div>
     <script src="./app.js" type='module'></script>
