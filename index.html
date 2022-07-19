@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice</title>
+    <title>My Vue CDN Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;500&family=Inter:wght@200;300;400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    </link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
     <style>
-        .box {
+        button {
+            font-family:"Open Sans"
+        }
+              .box {
             padding: 100px 0;
             width: 400px;
             text-align: center;
             background: #ddd;
-            margin: 20px;
+            margin: 10px;
             display: inline-block;
         }
 
@@ -27,8 +27,8 @@
             background: #eee;
             max-width: 960px;
             margin: 20px auto;
+            font-family:"Open Sans"
         }
-
         p,
         h3,
         ul {
@@ -54,79 +54,63 @@
         }
     </style>
 </head>
-
 <body>
-    <div id="container">
-
-        <div id="app">
-            <!-- <p>{{title}} - {{author}} - {{age}} </p>
-             -->
-            <div v-if="showBooks">
-
-                <!--#######################Attribute Binding######################-->
-                <!-- <a v-bind:href="url">The World's Best Web</a> -->
-                <a :href="url">The World's Best Web</a>
-
-                <!--#######################V-FOR######################-->
-                <ul>
-                    <!-- Conditional Class -->
-                    <!-- using computed data -->
-                    <li v-for="book in filteredBooks" :class="{fav: book.isFav}" @click="toggleFav(book)">
-                        <!-- using original data -->
-                        <!-- <li v-for="book in books" :class="{fav: book.isFav}" @click="toggleFav(book)"> -->
-
-                        <img :src="book.img" :alt="book.title">
-                        <h3>{{book.title}}</h3>
-                        <p>{{book.author}}</p>
-
-                        <!--#######################TOGGLE Fav######################-->
-
-
-                    </li>
-                </ul>
-                <!-- <p>{{books[0].title}} - {{books[0].author}} </p> -->
-                <!-- <p>{{books[1].title}} - {{books[1].author}} </p> -->
-                <!-- <p>{{books[2].title}} - {{books[2].author}} </p> -->
-                <!-- <p>{{title}} - {{author}} - {{age}} </p> -->
-            </div>
-
-            <!--#######################TOGGLE######################-->
-            <!-- toggle status end -->
-            <button @click="toggleShowBooks">
-                <span v-if="showBooks">Hide Books</span>
-                <!-- <span v-if="!showBooks">Show Books</span> -->
-                <span v-else>Show Books</span>
-            </button>
-
-            <!-- toggle status begin -->
-            <!-- <button @click="toggleShowBooks">
-                <span>Hide Books Toggle</span>
-            </button> -->
-
-            <!--#######################V-SHOW ######################-->
-            <!-- when using V-IF, it inserts and removes element from DOM, when using V-SHOW, it uses CSS -->
-            <!-- V-SHOW is lighter weight than V-IF, frequent toggle, try to use V-SHOW -->
-            <div v-show="showBooks">Currently showing books</div>
-
-            <!--#######################V-ON ######################-->
-            <button v-on:click="age++">Increase Age</button>
-            <button v-on:click="age--">Decrease Age</button>
-            <!-- v-on is a directive, inside double quotation is javascrip -->
-            <!-- <div @click="title = 'something else'">Change Book Title</div> -->
-            <!-- @ is a shorthand for v-on: -->
-            <div @click="changeTitle('Oathbringer')">Change Book Title</div>
-            <!-- note here we only reference the function without invoking it, otherwise it would be changeTitle(). The click action invokes it -->
-
-            <br>
-            <!--#######################MOUSE-EVENTS######################-->
-            <div class='box' @mouseover="handleEvent($event, 5)">mouse over</div>
-            <!-- when you want to pass on additional argument, make sure to add first `event` argument in using `$event` -->
-            <div class='box' @mouseover="handleEvent">mouse leave</div>
-            <div class='box' @dblclick="handleEvent">double click</div>
-            <div class='box' @mousemove="handleMouseMove">position - {{x}} {{y}}</div>
-
-        </div>
+<h1>My Vue CDN Project</h1>
+<div id="app">
+    <!-- attribute binding -->
+    <!-- v-bind: similar to v-on: @ -->
+    <!-- <a v-bind:href="url">best website ever</a> -->
+    <h2>Attribute-Binding Example</h2>
+    <a :href="url">Best Website Ever</a>
+    <div v-if="showBooks">
+    <!-- created through data -->
+    <h2>Data Binding Example</h2>
+    <p>{{title}} - {{author}} - {{age}} years old</p>
+  
+    <!-- v-on is a directive, directly increment age-->
+    <!-- <button v-on: click="age++">Increase Age</button> -->
+    <button @click="age++">Increase Age</button>
+    <button v-on:click="age--">Decrease Age</button>
+    <button @click="changeTitle('Oathbringer')">Change book title to 'Oathbringer'</button>
+ 
+    <h2>V-For List Example: Add Fav to A List of Books</h2>
+    <ul>
+         <!-- conditional class attribute binding -->
+        <li  v-for="book in books" :class="{fav:book.isFav}" @click="toggleFav(book)">
+               <!-- attribute binding -->
+            <img :src="book.img" :alt="book.title">
+            <h3>{{book.title}} </h3>
+        <p>{{book.author}} - {{book.age}} years old</p></li>
+    </ul>
+    <h2>Computed Property Example: Show Fav Books Only</h2>
+    <ul>
+        <!-- conditional class attribute binding -->
+       <li  v-for="book in filteredBooks" :class="{fav:book.isFav}" @click="toggleFav(book)">
+              <!-- attribute binding -->
+           <img :src="book.img" :alt="book.title">
+           <h3>{{book.title}} </h3>
+       <p>{{book.author}} - {{book.age}} years old</p></li>
+   </ul>
+</div>
+<!-- <button @click="toggleShowBooks"><span v-if="showBooks">Hide Books</span>
+    <span v-if="!showBooks">Show Books</span></button> -->
+    <button @click="toggleShowBooks"><span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span></button>
+        <!-- v-show uses CSS display: none item is still in DOM -->
+        <br>
+<div v-show="showBooks"><h3>Status: Currently showing books</h3>
     </div>
-    <script src="https://unpkg.com/vue@3.0.2"></script>
+
+
+<h2>Event Handling Example</h2>
+<div class="box" @mouseover="handleMouseover">{{mouseover}}</div>
+<div class="box" @mouseleave="handleMouseleave($event,'hello world')">{{mouseleave}}</div>
+<div class="box" @dblclick="handleDoubleClick">{{dblclick}}</div>    
+<div class="box" @mousemove="handleMousemove">Position - {{x}} {{y}}</div>
+
+
+
+</div>
     <script src="./app.js" type='module'></script>
 </body>
+</html>
